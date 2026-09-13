@@ -190,10 +190,10 @@ export function DemoProcessus() {
             </div>
             <div className="bg-[#0d1117] p-6">
               <h3 className="font-heading text-base font-semibold">
-                {STEPS[activeStep].title}
+                {STEPS[activeStep]?.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-white/70">
-                {STEPS[activeStep].text}
+                {STEPS[activeStep]?.text}
               </p>
             </div>
           </div>
