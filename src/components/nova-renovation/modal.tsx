@@ -34,19 +34,19 @@ export function NovaModal({ open, title, onClose, children }: NovaModalProps) {
         type="button"
         aria-label="Fermer la fenêtre"
         onClick={onClose}
-        className="absolute inset-0 bg-[#2a2a26]/60"
+        className="absolute inset-0 bg-[#18212F]/60"
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="relative max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white p-6 text-[#3a3a36] shadow-2xl sm:rounded-3xl sm:p-8"
+        className="relative max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white p-6 text-[#132238] shadow-2xl sm:rounded-3xl sm:p-8"
       >
         <button
           ref={closeRef}
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 inline-flex size-9 items-center justify-center rounded-full border border-[#c8531c]/20 text-[#c8531c] transition-colors hover:bg-[#f5f1e8]"
+          className="absolute top-4 right-4 inline-flex size-9 items-center justify-center rounded-full border border-[#2563EB]/20 text-[#2563EB] transition-colors hover:bg-[#F8FAFC]"
         >
           <X className="size-4" aria-hidden="true" />
           <span className="sr-only">Fermer</span>

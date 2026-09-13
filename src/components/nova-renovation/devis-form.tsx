@@ -54,16 +54,16 @@ export function NovaDevisForm({
   }
 
   const field =
-    "mt-1 w-full rounded-xl border border-[#c8531c]/20 bg-white px-4 py-2.5 text-sm text-[#3a3a36] outline-none focus:border-[#c8531c] focus:ring-2 focus:ring-[#c8531c]/20";
-  const labelCls = "text-sm font-medium text-[#3a3a36]";
+    "mt-1 w-full rounded-xl border border-[#2563EB]/20 bg-white px-4 py-2.5 text-sm text-[#132238] outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20";
+  const labelCls = "text-sm font-medium text-[#132238]";
 
   return (
-    <section id="contact" className="bg-[#f5f1e8] py-16 sm:py-24">
+    <section id="contact" className="bg-[#F8FAFC] py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-2xl font-bold text-[#3a3a36] sm:text-3xl">
+        <h2 className="font-heading text-2xl font-bold text-[#132238] sm:text-3xl">
           Parlez-nous de votre projet
         </h2>
-        <p className="mt-3 flex items-start gap-2 text-sm text-[#3a3a36]/70">
+        <p className="mt-3 flex items-start gap-2 text-sm text-[#132238]/70">
           <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           Formulaire de démonstration : aucune information n&apos;est enregistrée
           ni transmise.
@@ -150,7 +150,7 @@ export function NovaDevisForm({
             <div>
               <label className={labelCls} htmlFor="nova-surface">
                 Surface approximative{" "}
-                <span className="text-[#3a3a36]/50">(facultatif)</span>
+                <span className="text-[#132238]/50">(facultatif)</span>
               </label>
               <input
                 id="nova-surface"
@@ -184,12 +184,12 @@ export function NovaDevisForm({
               onClick={() =>
                 setPhotos((p) => [...p, `Photo de démonstration ${p.length + 1}`])
               }
-              className="mt-2 inline-flex items-center gap-2 rounded-xl border border-dashed border-[#c8531c]/35 px-4 py-2.5 text-sm font-medium text-[#c8531c] transition-colors hover:bg-white"
+              className="mt-2 inline-flex items-center gap-2 rounded-xl border border-dashed border-[#2563EB]/35 px-4 py-2.5 text-sm font-medium text-[#2563EB] transition-colors hover:bg-white"
             >
               <ImagePlus className="size-4" aria-hidden="true" />
               Simuler l&apos;ajout d&apos;une photo
             </button>
-            <p className="mt-1 text-xs text-[#3a3a36]/60">
+            <p className="mt-1 text-xs text-[#132238]/60">
               L&apos;ajout de photos est simulé : aucun fichier n&apos;est lu ni
               envoyé.
             </p>
@@ -198,7 +198,7 @@ export function NovaDevisForm({
                 {photos.map((p, i) => (
                   <li
                     key={p}
-                    className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-sm text-[#3a3a36]/80"
+                    className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-sm text-[#132238]/80"
                   >
                     {p}
                     <button
@@ -206,7 +206,7 @@ export function NovaDevisForm({
                       onClick={() =>
                         setPhotos((list) => list.filter((_, j) => j !== i))
                       }
-                      className="inline-flex items-center gap-1 text-xs font-medium text-[#c8531c] hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-[#2563EB] hover:underline"
                     >
                       <Trash2 className="size-3.5" aria-hidden="true" />
                       Retirer
@@ -218,13 +218,13 @@ export function NovaDevisForm({
           </div>
 
           <div>
-            <label className="flex items-start gap-3 text-sm text-[#3a3a36]/80">
+            <label className="flex items-start gap-3 text-sm text-[#132238]/80">
               <input
                 type="checkbox"
                 checked={consentement}
                 onChange={(e) => setConsentement(e.target.checked)}
                 aria-invalid={!!errors.consentement}
-                className="mt-0.5 size-4 accent-[#c8531c]"
+                className="mt-0.5 size-4 accent-[#2563EB]"
               />
               <span>
                 J&apos;accepte que ces informations soient utilisées pour
@@ -239,14 +239,14 @@ export function NovaDevisForm({
 
           <button
             type="submit"
-            className="w-full rounded-full bg-[#c8531c] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#c8531c]/90 sm:w-auto"
+            className="w-full rounded-full bg-[#2563EB] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#2563EB]/90 sm:w-auto"
           >
             Envoyer ma demande
           </button>
 
           <p aria-live="polite" className="min-h-6">
             {submitted && (
-              <span className="inline-block rounded-xl bg-[#c8531c] px-4 py-3 text-sm font-semibold text-white">
+              <span className="inline-block rounded-xl bg-[#2563EB] px-4 py-3 text-sm font-semibold text-white">
                 Mode démonstration : aucune donnée n&apos;a été envoyée.
               </span>
             )}

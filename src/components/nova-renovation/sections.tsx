@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Brush,
   CheckCircle2,
   ClipboardList,
-  HardHat,
+  Compass,
   Home,
-  MessageSquare,
+  Layers,
   PaintRoller,
   Ruler,
-  Search,
+  ShieldCheck,
+  UserRound,
   Wrench,
 } from "lucide-react";
 
@@ -28,68 +28,79 @@ const PHOTOS = {
     "https://images.pexels.com/photos/5691550/pexels-photo-5691550.jpeg?auto=compress&cs=tinysrgb&w=940&h=650&dpr=2",
   livingAfter:
     "https://images.pexels.com/photos/6474133/pexels-photo-6474133.jpeg?auto=compress&cs=tinysrgb&w=940&h=650&dpr=2",
-  renovation1:
-    "https://images.pexels.com/photos/5317154/pexels-photo-5317154.jpeg?auto=compress&cs=tinysrgb&w=940&h=650&dpr=2",
-  renovation2:
-    "https://images.pexels.com/photos/23358344/pexels-photo-23358344.jpeg?auto=compress&cs=tinysrgb&w=940&h=650&dpr=2",
-  renovation3:
-    "https://images.pexels.com/photos/6474133/pexels-photo-6474133.jpeg?auto=compress&cs=tinysrgb&w=940&h=650&dpr=2",
 };
 
-const TRUST = [
-  { icon: Search, label: "Visite et devis gratuits" },
-  { icon: HardHat, label: "Artisans qualifiés" },
-  { icon: ClipboardList, label: "Devis détaillé" },
+const PILLARS = [
+  {
+    icon: Compass,
+    title: "Étude personnalisée",
+    text: "Chaque projet commence par une analyse du logement, des usages et du budget réellement disponible.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Étapes définies",
+    text: "Le déroulé du chantier est écrit à l'avance : ce qui est inclus, ce qui ne l'est pas, et dans quel ordre.",
+  },
+  {
+    icon: UserRound,
+    title: "Interlocuteur dédié",
+    text: "Une seule personne suit le dossier du premier échange jusqu'à la réception des travaux.",
+  },
 ];
 
 export function DemoHero({ onDevis }: { onDevis: () => void }) {
   return (
-    <section id="accueil" className="bg-[#f5f1e8] py-16 sm:py-24">
+    <section id="accueil" className="bg-[#F8FAFC] py-16 sm:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
         <div>
-          <p className="text-sm font-semibold tracking-wide text-[#c8531c]">
+          <p className="text-sm font-semibold tracking-wide text-[#2563EB]">
             Entreprise de rénovation à Strasbourg
           </p>
-          <h1 className="mt-4 font-heading text-3xl leading-tight font-bold text-[#3a3a36] sm:text-4xl lg:text-5xl">
-            Donnez une seconde vie à votre intérieur
+          <h1 className="mt-4 font-heading text-3xl leading-tight font-bold text-[#132238] sm:text-4xl lg:text-5xl">
+            Une rénovation expliquée avant d&apos;être commencée
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-[#3a3a36]/75">
-            Rénovation complète, aménagement et finitions pour les particuliers
-            et professionnels. Un accompagnement de A à Z, du premier coup de
-            pinceau à la livraison.
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-[#132238]/75">
+            Rénovation complète, cuisine, salle de bain, peinture et
+            aménagement. Vous savez qui intervient, dans quel ordre et sur
+            quelle base le prix a été calculé.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <button
               type="button"
               onClick={onDevis}
-              className="rounded-full bg-[#c8531c] px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#c8531c]/90"
+              className="rounded-full bg-[#2563EB] px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#1d4ed8]"
             >
-              Demander un devis
+              Demander une estimation
             </button>
             <a
               href="#realisations"
-              className="rounded-full border border-[#c8531c]/30 px-6 py-3 text-center text-sm font-semibold text-[#c8531c] transition-colors hover:bg-[#c8531c]/5"
+              className="rounded-full border border-[#132238]/20 px-6 py-3 text-center text-sm font-semibold text-[#132238] transition-colors hover:bg-white"
             >
-              Découvrir les réalisations
+              Voir les concepts de réalisations
             </a>
           </div>
 
-          <ul className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-6">
-            {TRUST.map(({ icon: Icon, label }) => (
+          <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+            {PILLARS.map(({ icon: Icon, title, text }) => (
               <li
-                key={label}
-                className="flex items-center gap-2 text-sm font-medium text-[#3a3a36]/80"
+                key={title}
+                className="rounded-2xl border border-[#132238]/10 bg-white p-4"
               >
-                <Icon className="size-4 text-[#c8531c]" aria-hidden="true" />
-                {label}
+                <Icon className="size-5 text-[#F59E0B]" aria-hidden="true" />
+                <p className="mt-3 font-heading text-sm font-semibold text-[#132238]">
+                  {title}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-[#132238]/70">
+                  {text}
+                </p>
               </li>
             ))}
           </ul>
         </div>
 
         <div>
-          <div className="overflow-hidden rounded-3xl shadow-xl shadow-[#c8531c]/10">
+          <div className="overflow-hidden rounded-3xl shadow-xl shadow-[#132238]/10">
             <div className="h-64 sm:h-80 lg:h-[26rem]">
               <img
                 src={PHOTOS.hero}
@@ -99,7 +110,7 @@ export function DemoHero({ onDevis }: { onDevis: () => void }) {
               />
             </div>
           </div>
-          <p className="mt-3 text-xs text-[#3a3a36]/60">
+          <p className="mt-3 text-xs text-[#132238]/60">
             Visuels utilisés uniquement à titre d&apos;illustration.
           </p>
         </div>
@@ -109,7 +120,7 @@ export function DemoHero({ onDevis }: { onDevis: () => void }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Services                                                            */
+/* Prestations                                                         */
 /* ------------------------------------------------------------------ */
 
 export const PROJECT_TYPES = [
@@ -124,7 +135,7 @@ export const PROJECT_TYPES = [
 export type ProjectType = (typeof PROJECT_TYPES)[number];
 
 const SERVICES: {
-  icon: typeof Brush;
+  icon: typeof Home;
   title: string;
   text: string;
   type: ProjectType;
@@ -133,45 +144,56 @@ const SERVICES: {
   {
     icon: Home,
     title: "Rénovation complète",
-    text: "Transformation d'un logement ou d'un local, de la démolition aux finitions.",
+    text: "Transformation d'un logement ou d'un local, de la dépose aux finitions.",
     type: "Rénovation complète",
     details: [
       "Évaluation de l'état initial et repérage des contraintes",
       "Coordination de l'ensemble des corps d'état",
-      "Suivi de chantier et livraison dans les délais",
+      "Suivi de chantier et réception détaillée",
     ],
   },
   {
     icon: Wrench,
-    title: "Cuisine et salle de bain",
-    text: "Création ou modernisation de pièces d'eau et de cuisines fonctionnelles.",
+    title: "Cuisine",
+    text: "Création ou modernisation d'une cuisine pensée pour les usages quotidiens.",
     type: "Cuisine",
     details: [
-      "Conception adaptée à vos usages et à votre budget",
-      "Plomberie, électricité et carrelage inclus",
-      "Choix de matériaux durables et faciles d'entretien",
+      "Plan d'implantation adapté à la pièce",
+      "Électricité, plomberie et raccordements",
+      "Plan de travail et rangements sur mesure",
+    ],
+  },
+  {
+    icon: Layers,
+    title: "Salle de bain",
+    text: "Rénovation de pièces d'eau, de la douche à l'étanchéité et à la ventilation.",
+    type: "Salle de bain",
+    details: [
+      "Étanchéité et évacuation traitées en priorité",
+      "Douche accessible ou baignoire selon l'usage",
+      "Ventilation et éclairage adaptés à l'humidité",
     ],
   },
   {
     icon: PaintRoller,
     title: "Peinture et finitions",
-    text: "Remise aux normes et finitions soignées pour des murs et des sols impeccables.",
+    text: "Préparation des supports et finitions soignées, murs, plafonds et boiseries.",
     type: "Peinture et finitions",
     details: [
-      "Préparation des supports et traitement des imperfections",
-      "Peinture, enduit et papier peint",
-      "Pose de sols et plinthes",
+      "Traitement des fissures et des imperfections",
+      "Peinture, enduit et revêtements muraux",
+      "Pose de sols, plinthes et seuils",
     ],
   },
   {
     icon: Ruler,
     title: "Aménagement",
-    text: "Optimisation des espaces pour mieux vivre ou mieux travailler.",
+    text: "Optimisation des volumes pour mieux vivre ou mieux travailler dans l'existant.",
     type: "Aménagement",
     details: [
       "Création de cloisons et d'ouvertures",
-      "Optimisation de la circulation et de la luminosité",
-      "Solutions de rangement sur mesure",
+      "Circulation et luminosité repensées",
+      "Rangements intégrés sur mesure",
     ],
   },
 ];
@@ -184,28 +206,32 @@ export function DemoServices({
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="services" className="bg-white py-16 sm:py-24">
+    <section id="prestations" className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="max-w-2xl font-heading text-2xl font-bold text-[#3a3a36] sm:text-3xl">
-          Des prestations adaptées à votre projet
+        <h2 className="max-w-2xl font-heading text-2xl font-bold text-[#132238] sm:text-3xl">
+          Cinq prestations, décrites sans zone d&apos;ombre
         </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#132238]/70">
+          Cliquez sur une prestation pour afficher son détail, puis lancez une
+          demande d&apos;estimation déjà pré-remplie.
+        </p>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => {
             const Icon = service.icon;
             const open = openIndex === i;
             return (
               <article
                 key={service.title}
-                className="flex h-full flex-col rounded-2xl border border-[#c8531c]/10 bg-[#f5f1e8]/60 p-6 transition-all hover:-translate-y-1 hover:border-[#c8531c]/25 hover:shadow-lg"
+                className="flex h-full flex-col rounded-2xl border border-[#132238]/10 bg-[#F8FAFC] p-6 transition-all hover:-translate-y-1 hover:border-[#2563EB]/35 hover:shadow-lg"
               >
-                <span className="inline-flex size-11 items-center justify-center rounded-xl bg-[#c8531c]">
+                <span className="inline-flex size-11 items-center justify-center rounded-xl bg-[#2563EB]">
                   <Icon className="size-5 text-white" aria-hidden="true" />
                 </span>
-                <h3 className="mt-4 font-heading text-lg font-semibold text-[#3a3a36]">
+                <h3 className="mt-4 font-heading text-lg font-semibold text-[#132238]">
                   {service.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#3a3a36]/75">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#132238]/75">
                   {service.text}
                 </p>
 
@@ -214,18 +240,18 @@ export function DemoServices({
                   aria-expanded={open}
                   aria-controls={`service-detail-${i}`}
                   onClick={() => setOpenIndex(open ? null : i)}
-                  className="mt-5 rounded-full border border-[#c8531c]/25 px-4 py-2 text-sm font-semibold text-[#c8531c] transition-colors hover:bg-[#c8531c] hover:text-white"
+                  className="mt-5 rounded-full border border-[#2563EB]/30 px-4 py-2 text-sm font-semibold text-[#2563EB] transition-colors hover:bg-[#2563EB] hover:text-white"
                 >
-                  {open ? "Masquer le détail" : "En savoir plus"}
+                  {open ? "Masquer le détail" : "Voir le détail"}
                 </button>
 
                 {open && (
                   <div id={`service-detail-${i}`} className="mt-4">
-                    <ul className="space-y-2 text-sm text-[#3a3a36]/80">
+                    <ul className="space-y-2 text-sm text-[#132238]/80">
                       {service.details.map((d) => (
                         <li key={d} className="flex gap-2">
                           <CheckCircle2
-                            className="mt-0.5 size-4 shrink-0 text-[#c8531c]"
+                            className="mt-0.5 size-4 shrink-0 text-[#F59E0B]"
                             aria-hidden="true"
                           />
                           <span>{d}</span>
@@ -235,9 +261,9 @@ export function DemoServices({
                     <button
                       type="button"
                       onClick={() => onDevis(service.type)}
-                      className="mt-4 w-full rounded-full bg-[#c8531c] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#c8531c]/90"
+                      className="mt-4 w-full rounded-full bg-[#132238] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#18212F]"
                     >
-                      Demander un devis pour cette prestation
+                      Demander une estimation pour cette prestation
                     </button>
                   </div>
                 )}
@@ -257,39 +283,45 @@ export function DemoServices({
 const PROJECTS = [
   {
     id: "cuisine",
-    title: "Concept de cuisine moderne",
+    title: "Concept de cuisine ouverte",
     beforePhoto: PHOTOS.kitchenBefore,
     afterPhoto: PHOTOS.kitchenAfter,
     description:
-      "Transformation d'une cuisine vieillissante en un espace moderne et fonctionnel.",
+      "Une cuisine fermée et vieillissante repensée en espace ouvert sur le séjour.",
     items: ["Plan de travail", "Rangements", "Éclairage"],
     besoin:
-      "Une cuisine ancienne avec des rangements insuffisants et un plan de travail détérioré.",
-    choix: [
-      "Optimiser l'espace avec des rangements jusqu'au plafond",
-      "Choisir un plan de travail résistant et facile d'entretien",
-      "Installer un éclairage sous meubles pour la fonctionnalité",
+      "Un couple imagine cuisiner sans être isolé du reste du logement, avec des rangements suffisants pour une famille de quatre personnes.",
+    contraintes: [
+      "Un mur porteur qui ne peut pas être supprimé entièrement",
+      "Une arrivée d'eau existante difficile à déplacer",
+      "Un budget à tenir sans changer l'électroménager",
     ],
-    resultat:
-      "Une cuisine ergonomique, lumineuse et adaptée aux usages quotidiens.",
+    proposition: [
+      "Créer une ouverture partielle plutôt qu'une démolition complète",
+      "Conserver l'implantation de l'évier pour limiter les travaux",
+      "Ajouter des rangements hauts et un éclairage sous meubles",
+    ],
   },
   {
     id: "salle-de-bain",
-    title: "Concept de salle de bain contemporaine",
+    title: "Concept de salle de bain accessible",
     beforePhoto: PHOTOS.bathroomBefore,
     afterPhoto: PHOTOS.bathroomAfter,
     description:
-      "Rénovation complète d'une salle de bain pour un confort moderne.",
-    items: ["Douche italienne", "Meuble vasque", "Carrelage"],
+      "Une pièce d'eau ancienne transformée en salle de bain simple à utiliser et à entretenir.",
+    items: ["Douche de plain-pied", "Meuble vasque", "Ventilation"],
     besoin:
-      "Une salle de bain vieillissante avec une douche non fonctionnelle et des finitions abîmées.",
-    choix: [
-      "Remplacer la baignoire par une douche italienne accessible",
-      "Installer un meuble vasque avec rangement intégré",
-      "Poser un carrelage grand format pour agrandir visuellement",
+      "Des propriétaires souhaitent anticiper le vieillissement du logement et remplacer une baignoire peu pratique.",
+    contraintes: [
+      "Une hauteur sous plafond limitée pour l'évacuation",
+      "Une ventilation insuffisante à l'origine de traces d'humidité",
+      "Une surface réduite de moins de cinq mètres carrés",
     ],
-    resultat:
-      "Une salle de bain moderne, facile d'entretien et confortable au quotidien.",
+    proposition: [
+      "Installer une douche de plain-pied avec receveur extra-plat",
+      "Reprendre l'étanchéité avant la pose du carrelage",
+      "Remplacer la ventilation par un modèle hygroréglable",
+    ],
   },
   {
     id: "sejour",
@@ -297,17 +329,20 @@ const PROJECTS = [
     beforePhoto: PHOTOS.livingBefore,
     afterPhoto: PHOTOS.livingAfter,
     description:
-      "Ouverture et rénovation d'un séjour pour gagner en luminosité.",
-    items: ["Ouverture de cloison", "Peinture", "Sol neuf"],
+      "Un séjour cloisonné et sombre réorganisé pour gagner en clarté et en circulation.",
+    items: ["Ouverture", "Peinture claire", "Sol neuf"],
     besoin:
-      "Un séjour cloisonné et sombre, avec un sol abîmé et des murs fatigués.",
-    choix: [
-      "Ouvrir la cloison pour créer un espace de vie convivial",
-      "Appliquer une peinture claire pour maximiser la lumière",
-      "Poser un sol moderne et résistant",
+      "Une famille veut un espace de vie unique, plus clair, sans changer la surface du logement.",
+    contraintes: [
+      "Un sol abîmé mais posé sur une chape à conserver",
+      "Une seule source de lumière naturelle orientée nord",
+      "Un chantier à réaliser en site occupé",
     ],
-    resultat:
-      "Un séjour ouvert, lumineux et accueillant, idéal pour recevoir.",
+    proposition: [
+      "Élargir l'ouverture existante vers l'entrée",
+      "Choisir des teintes claires et un éclairage indirect",
+      "Poser un sol stratifié compatible avec la chape existante",
+    ],
   },
 ];
 
@@ -316,17 +351,21 @@ export function DemoRealisations() {
   const close = useCallback(() => setActive(null), []);
 
   return (
-    <section id="realisations" className="bg-[#f5f1e8] py-16 sm:py-24">
+    <section id="realisations" className="bg-[#F8FAFC] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="max-w-2xl font-heading text-2xl font-bold text-[#3a3a36] sm:text-3xl">
-          Des projets pensés pour chaque intérieur
+        <h2 className="max-w-2xl font-heading text-2xl font-bold text-[#132238] sm:text-3xl">
+          Trois concepts de réalisations
         </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#132238]/70">
+          Ces projets sont imaginés pour montrer une manière de raisonner : le
+          besoin, les contraintes rencontrées, puis la proposition.
+        </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {PROJECTS.map((p) => (
             <article
               key={p.id}
-              className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#c8531c]/10 bg-white transition-shadow hover:shadow-lg hover:shadow-[#c8531c]/10"
+              className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#132238]/10 bg-white transition-shadow hover:shadow-lg hover:shadow-[#132238]/10"
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -337,17 +376,17 @@ export function DemoRealisations() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-heading text-lg font-semibold text-[#3a3a36]">
+                <h3 className="font-heading text-lg font-semibold text-[#132238]">
                   {p.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#3a3a36]/75">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#132238]/75">
                   {p.description}
                 </p>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {p.items.map((item) => (
                     <li
                       key={item}
-                      className="rounded-full bg-[#c8531c]/10 px-3 py-1 text-xs font-medium text-[#c8531c]"
+                      className="rounded-full bg-[#2563EB]/10 px-3 py-1 text-xs font-medium text-[#2563EB]"
                     >
                       {item}
                     </li>
@@ -356,7 +395,7 @@ export function DemoRealisations() {
                 <button
                   type="button"
                   onClick={() => setActive(p)}
-                  className="mt-6 rounded-full bg-[#c8531c] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#c8531c]/90"
+                  className="mt-6 rounded-full bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1d4ed8]"
                 >
                   Découvrir le concept
                 </button>
@@ -365,8 +404,8 @@ export function DemoRealisations() {
           ))}
         </div>
 
-        <p className="mt-6 text-xs text-[#3a3a36]/60">
-          Exemple fictif créé à titre de démonstration. Il ne s&apos;agit pas
+        <p className="mt-6 text-xs text-[#132238]/60">
+          Exemple fictif créé à titre d&apos;illustration. Il ne s&apos;agit pas
           d&apos;une réalisation client.
         </p>
       </div>
@@ -378,16 +417,16 @@ export function DemoRealisations() {
       >
         {active && (
           <div>
-            <p className="text-xs font-semibold tracking-wide text-[#c8531c] uppercase">
+            <p className="text-xs font-semibold tracking-wide text-[#2563EB] uppercase">
               Concept fictif
             </p>
-            <h3 className="mt-2 font-heading text-xl font-bold text-[#3a3a36]">
+            <h3 className="mt-2 font-heading text-xl font-bold text-[#132238]">
               {active.title}
             </h3>
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               <div>
-                <p className="mb-1 text-xs font-semibold text-[#3a3a36]/60">
+                <p className="mb-1 text-xs font-semibold text-[#132238]/60">
                   Avant
                 </p>
                 <div className="h-32 overflow-hidden rounded-xl sm:h-44">
@@ -400,7 +439,7 @@ export function DemoRealisations() {
                 </div>
               </div>
               <div>
-                <p className="mb-1 text-xs font-semibold text-[#c8531c]">
+                <p className="mb-1 text-xs font-semibold text-[#2563EB]">
                   Après
                 </p>
                 <div className="h-32 overflow-hidden rounded-xl sm:h-44">
@@ -415,23 +454,23 @@ export function DemoRealisations() {
             </div>
 
             <div className="mt-6">
-              <h4 className="text-sm font-semibold text-[#c8531c]">
+              <h4 className="text-sm font-semibold text-[#2563EB]">
                 Le besoin imaginé
               </h4>
-              <p className="mt-1 text-sm leading-relaxed text-[#3a3a36]/80">
+              <p className="mt-1 text-sm leading-relaxed text-[#132238]/80">
                 {active.besoin}
               </p>
             </div>
 
             <div className="mt-5">
-              <h4 className="text-sm font-semibold text-[#c8531c]">
-                Les choix de conception
+              <h4 className="text-sm font-semibold text-[#2563EB]">
+                Les contraintes rencontrées
               </h4>
-              <ul className="mt-2 space-y-2 text-sm text-[#3a3a36]/80">
-                {active.choix.map((c) => (
+              <ul className="mt-2 space-y-2 text-sm text-[#132238]/80">
+                {active.contraintes.map((c) => (
                   <li key={c} className="flex gap-2">
                     <CheckCircle2
-                      className="mt-0.5 size-4 shrink-0 text-[#c8531c]"
+                      className="mt-0.5 size-4 shrink-0 text-[#F59E0B]"
                       aria-hidden="true"
                     />
                     <span>{c}</span>
@@ -441,27 +480,25 @@ export function DemoRealisations() {
             </div>
 
             <div className="mt-5">
-              <h4 className="text-sm font-semibold text-[#c8531c]">
-                Le résultat
+              <h4 className="text-sm font-semibold text-[#2563EB]">
+                La proposition
               </h4>
-              <p className="mt-1 text-sm leading-relaxed text-[#3a3a36]/80">
-                {active.resultat}
-              </p>
-              <div className="mt-3 grid grid-cols-3 gap-2">
-                {active.items.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl bg-[#f5f1e8] p-3 text-center text-xs font-medium text-[#c8531c]"
-                  >
-                    {item}
-                  </div>
+              <ul className="mt-2 space-y-2 text-sm text-[#132238]/80">
+                {active.proposition.map((c) => (
+                  <li key={c} className="flex gap-2">
+                    <CheckCircle2
+                      className="mt-0.5 size-4 shrink-0 text-[#2563EB]"
+                      aria-hidden="true"
+                    />
+                    <span>{c}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            <p className="mt-6 rounded-xl bg-[#f5f1e8] p-3 text-xs leading-relaxed text-[#3a3a36]/70">
-              Exemple fictif créé à titre de démonstration. Il ne s&apos;agit pas
-              d&apos;une réalisation client.
+            <p className="mt-6 rounded-xl bg-[#F8FAFC] p-3 text-xs leading-relaxed text-[#132238]/70">
+              Exemple fictif créé à titre d&apos;illustration. Il ne s&apos;agit
+              pas d&apos;une réalisation client.
             </p>
           </div>
         )}
@@ -508,9 +545,13 @@ export function DemoComparateur() {
   return (
     <section className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-2xl font-bold text-[#3a3a36] sm:text-3xl">
-          Visualisez la transformation d&apos;une pièce
+        <h2 className="font-heading text-2xl font-bold text-[#132238] sm:text-3xl">
+          Comprendre la refonte en un regard
         </h2>
+        <p className="mt-3 text-sm leading-relaxed text-[#132238]/70">
+          Faites glisser le curseur, à la souris ou au doigt, pour comparer
+          l&apos;état initial et la proposition.
+        </p>
 
         <div
           ref={containerRef}
@@ -518,7 +559,7 @@ export function DemoComparateur() {
             draggingRef.current = true;
             setFromClientX(e.clientX);
           }}
-          className="relative mt-8 h-64 touch-none overflow-hidden rounded-3xl border border-[#c8531c]/10 select-none sm:h-96"
+          className="relative mt-8 h-64 touch-none overflow-hidden rounded-3xl border border-[#132238]/10 select-none sm:h-96"
         >
           <img
             src={PHOTOS.kitchenAfter}
@@ -539,10 +580,10 @@ export function DemoComparateur() {
             />
           </div>
 
-          <span className="absolute top-3 left-3 rounded-full bg-[#2a2a26]/80 px-3 py-1 text-xs font-semibold text-white">
+          <span className="absolute top-3 left-3 rounded-full bg-[#18212F]/85 px-3 py-1 text-xs font-semibold text-white">
             Avant
           </span>
-          <span className="absolute top-3 right-3 rounded-full bg-[#c8531c]/90 px-3 py-1 text-xs font-semibold text-white">
+          <span className="absolute top-3 right-3 rounded-full bg-[#2563EB]/90 px-3 py-1 text-xs font-semibold text-white">
             Après
           </span>
 
@@ -559,11 +600,11 @@ export function DemoComparateur() {
             value={Math.round(value)}
             onChange={(e) => setValue(Number(e.target.value))}
             aria-label="Curseur de comparaison avant après"
-            className="absolute inset-x-0 bottom-4 mx-auto w-[85%] cursor-pointer accent-[#c8531c]"
+            className="absolute inset-x-0 bottom-4 mx-auto w-[85%] cursor-pointer accent-[#F59E0B]"
           />
         </div>
 
-        <p className="mt-4 text-xs text-[#3a3a36]/60">
+        <p className="mt-4 text-xs text-[#132238]/60">
           Transformation conceptuelle fictive, créée uniquement pour illustrer
           une proposition de rénovation.
         </p>
@@ -579,43 +620,47 @@ export function DemoComparateur() {
 const STEPS = [
   {
     title: "Premier échange",
-    text: "Nous discutons de votre projet, de vos besoins et de votre budget.",
+    text: "Nous cadrons le besoin, le calendrier souhaité et l'ordre de budget envisagé.",
   },
   {
-    title: "Visite et diagnostic",
-    text: "Évaluation de l'état des lieux et repérage des contraintes techniques.",
+    title: "Visite technique",
+    text: "État des lieux sur place : supports, réseaux, accès et contraintes du bâtiment.",
   },
   {
-    title: "Devis détaillé",
-    text: "Un devis clair et détaillé, expliqué point par point avant validation.",
+    title: "Estimation détaillée",
+    text: "Un document ligne par ligne, avec ce qui est inclus et ce qui reste optionnel.",
   },
   {
-    title: "Chantier et livraison",
-    text: "Réalisation des travaux avec un suivi régulier et une livraison dans les délais.",
+    title: "Chantier suivi",
+    text: "Un planning partagé, un interlocuteur unique et un point d'avancement régulier.",
+  },
+  {
+    title: "Réception et garanties",
+    text: "Vérification pièce par pièce, levée des réserves puis remise des documents.",
   },
 ];
 
 export function DemoMethode() {
   return (
-    <section id="methode" className="bg-[#c8531c] py-16 text-white sm:py-24">
+    <section id="methode" className="bg-[#132238] py-16 text-white sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="font-heading text-2xl font-bold sm:text-3xl">
-          Votre projet en quatre étapes
+          Notre méthode de travail en cinq étapes
         </h2>
 
-        <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {STEPS.map((step, i) => (
             <li
               key={step.title}
-              className="rounded-2xl bg-white/[0.1] p-6 transition-transform duration-300 hover:-translate-y-1"
+              className="relative rounded-2xl bg-white/[0.06] p-6 transition-transform duration-300 hover:-translate-y-1"
             >
-              <span className="inline-flex size-9 items-center justify-center rounded-full bg-white font-heading text-sm font-bold text-[#c8531c]">
+              <span className="inline-flex size-9 items-center justify-center rounded-full bg-[#F59E0B] font-heading text-sm font-bold text-[#18212F]">
                 {i + 1}
               </span>
               <h3 className="mt-4 font-heading text-base font-semibold">
                 {step.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/80">
+              <p className="mt-2 text-sm leading-relaxed text-white/75">
                 {step.text}
               </p>
             </li>
@@ -627,44 +672,68 @@ export function DemoMethode() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Avis                                                                */
+/* Confiance                                                           */
 /* ------------------------------------------------------------------ */
 
-export function DemoAvis() {
+const TRUST_ITEMS = [
+  {
+    icon: ShieldCheck,
+    title: "Une estimation écrite",
+    text: "Le prix est détaillé poste par poste, avec les quantités retenues et les hypothèses prises.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Un périmètre clair",
+    text: "Ce qui est exclu est écrit noir sur blanc : évacuation, reprises, fournitures non incluses.",
+  },
+  {
+    icon: UserRound,
+    title: "Un seul interlocuteur",
+    text: "La même personne suit le dossier, ce qui évite les informations contradictoires.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Une réception formalisée",
+    text: "Un document de réception liste les points vérifiés et les éventuelles réserves.",
+  },
+];
+
+export function DemoConfiance() {
   return (
     <section className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-2xl font-bold text-[#3a3a36] sm:text-3xl">
-          L&apos;espace réservé aux retours clients
+        <h2 className="max-w-3xl font-heading text-2xl font-bold text-[#132238] sm:text-3xl">
+          Les éléments qui rassurent avant de demander un devis
         </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#3a3a36]/75">
-          Sur un véritable site, cette section permettrait d&apos;intégrer des
-          avis authentiques et vérifiés afin de rassurer les futurs clients.
-        </p>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-dashed border-[#c8531c]/30 bg-[#f5f1e8]/50 p-6"
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {TRUST_ITEMS.map(({ icon: Icon, title, text }) => (
+            <article
+              key={title}
+              className="rounded-2xl border border-[#132238]/10 bg-[#F8FAFC] p-6"
             >
-              <MessageSquare className="size-5 text-[#c8531c]/50" aria-hidden="true" />
-              <p className="mt-4 text-sm font-semibold text-[#c8531c]">
-                Emplacement pour un avis authentique
+              <Icon className="size-5 text-[#2563EB]" aria-hidden="true" />
+              <h3 className="mt-4 font-heading text-base font-semibold text-[#132238]">
+                {title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#132238]/75">
+                {text}
               </p>
-              <div className="mt-4 space-y-2" aria-hidden="true">
-                <div className="h-2 w-full rounded bg-[#c8531c]/10" />
-                <div className="h-2 w-4/5 rounded bg-[#c8531c]/10" />
-                <div className="h-2 w-2/3 rounded bg-[#c8531c]/10" />
-              </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        <p className="mt-6 flex items-center gap-2 text-xs text-[#3a3a36]/60">
-          <MessageSquare className="size-4" aria-hidden="true" />
-          Aucun avis, nom ou note n&apos;est inventé dans cette démonstration.
-        </p>
+        <div className="mt-8 rounded-2xl border border-dashed border-[#F59E0B]/60 bg-[#F59E0B]/5 p-5">
+          <p className="font-heading text-sm font-semibold text-[#132238]">
+            Pourquoi aucun avis client n&apos;est affiché ici
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-[#132238]/75">
+            Nova Rénovation étant une entreprise fictive, afficher des
+            témoignages reviendrait à inventer des personnes et des notes. Sur
+            un site réel, cette zone accueillerait des avis vérifiables, datés
+            et rattachés à des chantiers identifiables.
+          </p>
+        </div>
       </div>
     </section>
   );

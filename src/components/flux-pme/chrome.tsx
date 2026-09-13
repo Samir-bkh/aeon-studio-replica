@@ -1,193 +1,128 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Menu, Workflow, X } from "lucide-react";
+import {
+  ArrowLeft,
+  BarChart3,
+  Inbox,
+  PlusCircle,
+  RotateCcw,
+  Settings,
+  Workflow,
+} from "lucide-react";
 
-export const NAV_LINKS = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "Processus", href: "#processus" },
-  { label: "Bénéfices", href: "#benefices" },
-  { label: "Intégrations", href: "#integrations" },
-  { label: "Contact", href: "#contact" },
+export type Onglet =
+  | "apercu"
+  | "nouvelle"
+  | "demandes"
+  | "automatisations"
+  | "parametres";
+
+export const ONGLETS: { id: Onglet; label: string; icon: typeof Inbox }[] = [
+  { id: "apercu", label: "Vue d'ensemble", icon: BarChart3 },
+  { id: "nouvelle", label: "Nouvelle demande", icon: PlusCircle },
+  { id: "demandes", label: "Demandes", icon: Inbox },
+  { id: "automatisations", label: "Automatisations", icon: Workflow },
+  { id: "parametres", label: "Paramètres", icon: Settings },
 ];
 
-export function DemoBanner() {
+export function DemoBanner({ onReset }: { onReset: () => void }) {
   return (
-    <div className="sticky top-0 z-60 w-full bg-[#0d1117] text-white">
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-1 px-4 py-2 text-xs sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:text-[13px]">
-        <p className="leading-snug">
-          <span className="font-semibold">Démonstration fictive</span> créée par
-          Aeon Studio — Flux PME n&apos;est pas un produit réel.
-        </p>
-        <a
-          href="/#demonstrations"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 font-medium underline-offset-4 transition-colors hover:bg-white/20 hover:underline"
-        >
-          <ArrowLeft className="size-3.5" aria-hidden="true" />
-          Retour au portfolio
-        </a>
+    <div className="sticky top-0 z-50 w-full bg-[#111827] text-white">
+      <div className="mx-auto flex max-w-[110rem] flex-col gap-2 px-4 py-2.5 text-xs sm:text-[13px] lg:flex-row lg:items-center lg:justify-between lg:gap-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-[#38BDF8] px-2.5 py-0.5 text-[11px] font-bold text-[#111827]">
+            Démonstration fictive
+          </span>
+          <p className="leading-snug">
+            Simulation interactive créée par Aeon Studio — aucune donnée réelle
+            n&apos;est traitée ou envoyée.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={onReset}
+            className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 font-medium transition-colors hover:bg-white/20"
+          >
+            <RotateCcw className="size-3.5" aria-hidden="true" />
+            Réinitialiser la simulation
+          </button>
+          <a
+            href="/#demonstrations"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 font-medium underline-offset-4 transition-colors hover:bg-white/20 hover:underline"
+          >
+            <ArrowLeft className="size-3.5" aria-hidden="true" />
+            Retour au portfolio
+          </a>
+        </div>
       </div>
     </div>
   );
 }
 
-export function DemoNav({ onDevis }: { onDevis: () => void }) {
-  const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    panelRef.current?.querySelector<HTMLElement>("a, button")?.focus();
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
-
+export function DemoSidebar({
+  onglet,
+  onChange,
+}: {
+  onglet: Onglet;
+  onChange: (onglet: Onglet) => void;
+}) {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#0d1117]/95 backdrop-blur">
-      <nav
-        aria-label="Navigation du site Flux PME"
-        className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
-      >
-        <a
-          href="#accueil"
-          className="flex items-center gap-2 text-[#58a6ff]"
-          onClick={() => setOpen(false)}
-        >
-          <span className="flex size-8 items-center justify-center rounded-lg bg-[#1f6feb]">
-            <Workflow className="size-4 text-white" aria-hidden="true" />
-          </span>
-          <span className="font-heading text-base font-bold tracking-tight text-white">
-            Flux PME
-          </span>
-        </a>
-
-        <ul className="hidden items-center gap-7 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onDevis}
-            className="hidden rounded-full bg-[#1f6feb] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1f6feb]/90 sm:inline-flex"
-          >
-            Demander une démo
-          </button>
-          <button
-            type="button"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 text-white lg:hidden"
-            aria-expanded={open}
-            aria-controls="menu-mobile-flux"
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? (
-              <X className="size-5" aria-hidden="true" />
-            ) : (
-              <Menu className="size-5" aria-hidden="true" />
-            )}
-          </button>
+    <nav
+      aria-label="Navigation de la simulation Flux PME"
+      className="bg-[#111827] text-white lg:min-h-full lg:w-64 lg:shrink-0"
+    >
+      <div className="hidden items-center gap-2 px-5 py-6 lg:flex">
+        <span className="flex size-9 items-center justify-center rounded-xl bg-[#2563EB]">
+          <Workflow className="size-4" aria-hidden="true" />
+        </span>
+        <div>
+          <p className="font-heading text-sm font-bold">Flux PME</p>
+          <p className="text-[11px] text-white/60">Espace de simulation</p>
         </div>
-      </nav>
+      </div>
 
-      {open && (
-        <div
-          id="menu-mobile-flux"
-          ref={panelRef}
-          className="border-t border-white/[0.08] bg-[#0d1117] lg:hidden"
-        >
-          <ul className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-xl px-3 py-3 text-base font-medium text-white/90 transition-colors hover:bg-white/5"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-            <li className="px-3 pt-2 pb-3">
+      <ul className="flex gap-1 overflow-x-auto px-3 py-3 lg:flex-col lg:overflow-visible lg:px-3 lg:pb-8">
+        {ONGLETS.map(({ id, label, icon: Icon }) => {
+          const actif = onglet === id;
+          return (
+            <li key={id} className="shrink-0 lg:w-full">
               <button
                 type="button"
-                onClick={() => {
-                  setOpen(false);
-                  onDevis();
-                }}
-                className="w-full rounded-full bg-[#1f6feb] px-5 py-3 text-sm font-semibold text-white"
+                aria-current={actif ? "page" : undefined}
+                onClick={() => onChange(id)}
+                className={`flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium whitespace-nowrap transition-colors ${
+                  actif
+                    ? "bg-[#2563EB] text-white"
+                    : "text-white/70 hover:bg-white/10 hover:text-white"
+                }`}
               >
-                Demander une démo
+                <Icon className="size-4 shrink-0" aria-hidden="true" />
+                {label}
               </button>
             </li>
-          </ul>
-        </div>
-      )}
-    </header>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
 
 export function DemoFooter() {
   return (
-    <footer className="bg-[#0d1117] text-white/70">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <p className="font-heading text-lg font-bold text-white">Flux PME</p>
-            <p className="mt-2 text-sm text-[#58a6ff]">Démonstration fictive</p>
-            <p className="mt-1 text-sm text-white/60">
-              Automatisation pour PME
-            </p>
-          </div>
-          <nav aria-label="Liens du pied de page">
-            <p className="text-sm font-semibold text-white">Navigation</p>
-            <ul className="mt-3 space-y-2 text-sm text-white/60">
-              <li>
-                <a href="#processus" className="hover:text-white hover:underline">
-                  Processus
-                </a>
-              </li>
-              <li>
-                <a href="#benefices" className="hover:text-white hover:underline">
-                  Bénéfices
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-white hover:underline">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <p className="text-sm leading-relaxed text-white/60 lg:col-span-2">
-            Flux PME est un concept fictif créé uniquement pour présenter une
-            démonstration de site web. Aucune donnée n&apos;est collectée et
-            aucun service n&apos;est réellement proposé.
-          </p>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/[0.08] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/50">
-            Démonstration conçue par Aeon Studio.
-          </p>
-          <a
-            href="/#demonstrations"
-            className="inline-flex items-center gap-2 rounded-full bg-[#1f6feb] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#0d1117]"
-          >
-            <ArrowLeft className="size-4" aria-hidden="true" />
-            Retourner sur Aeon Studio
-          </a>
-        </div>
+    <footer className="border-t border-[#111827]/10 bg-white">
+      <div className="mx-auto flex max-w-[110rem] flex-col gap-3 px-4 py-8 text-sm text-[#111827]/70 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+        <p className="max-w-2xl leading-relaxed">
+          Flux PME est une interface fictive conçue par Aeon Studio. Toutes les
+          données affichées sont inventées, restent dans votre navigateur et ne
+          sont transmises à aucun service.
+        </p>
+        <a
+          href="/#demonstrations"
+          className="inline-flex w-fit items-center gap-2 rounded-full bg-[#111827] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#2563EB]"
+        >
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          Retourner sur Aeon Studio
+        </a>
       </div>
     </footer>
   );
