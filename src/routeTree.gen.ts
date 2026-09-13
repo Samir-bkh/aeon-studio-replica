@@ -10,33 +10,78 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemonstrationsAtelierVertRouteImport } from './routes/demonstrations.atelier-vert'
+import { Route as DemonstrationsFluxPmeRouteImport } from './routes/demonstrations.flux-pme'
+import { Route as DemonstrationsNovaRenovationRouteImport } from './routes/demonstrations.nova-renovation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemonstrationsAtelierVertRoute =
+  DemonstrationsAtelierVertRouteImport.update({
+    id: '/demonstrations/atelier-vert',
+    path: '/demonstrations/atelier-vert',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DemonstrationsFluxPmeRoute = DemonstrationsFluxPmeRouteImport.update({
+  id: '/demonstrations/flux-pme',
+  path: '/demonstrations/flux-pme',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemonstrationsNovaRenovationRoute =
+  DemonstrationsNovaRenovationRouteImport.update({
+    id: '/demonstrations/nova-renovation',
+    path: '/demonstrations/nova-renovation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demonstrations/atelier-vert': typeof DemonstrationsAtelierVertRoute
+  '/demonstrations/flux-pme': typeof DemonstrationsFluxPmeRoute
+  '/demonstrations/nova-renovation': typeof DemonstrationsNovaRenovationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demonstrations/atelier-vert': typeof DemonstrationsAtelierVertRoute
+  '/demonstrations/flux-pme': typeof DemonstrationsFluxPmeRoute
+  '/demonstrations/nova-renovation': typeof DemonstrationsNovaRenovationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/demonstrations/atelier-vert': typeof DemonstrationsAtelierVertRoute
+  '/demonstrations/flux-pme': typeof DemonstrationsFluxPmeRoute
+  '/demonstrations/nova-renovation': typeof DemonstrationsNovaRenovationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/demonstrations/atelier-vert'
+    | '/demonstrations/flux-pme'
+    | '/demonstrations/nova-renovation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/demonstrations/atelier-vert'
+    | '/demonstrations/flux-pme'
+    | '/demonstrations/nova-renovation'
+  id:
+    | '__root__'
+    | '/'
+    | '/demonstrations/atelier-vert'
+    | '/demonstrations/flux-pme'
+    | '/demonstrations/nova-renovation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemonstrationsAtelierVertRoute: typeof DemonstrationsAtelierVertRoute
+  DemonstrationsFluxPmeRoute: typeof DemonstrationsFluxPmeRoute
+  DemonstrationsNovaRenovationRoute: typeof DemonstrationsNovaRenovationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +93,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demonstrations/atelier-vert': {
+      id: '/demonstrations/atelier-vert'
+      path: '/demonstrations/atelier-vert'
+      fullPath: '/demonstrations/atelier-vert'
+      preLoaderRoute: typeof DemonstrationsAtelierVertRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demonstrations/flux-pme': {
+      id: '/demonstrations/flux-pme'
+      path: '/demonstrations/flux-pme'
+      fullPath: '/demonstrations/flux-pme'
+      preLoaderRoute: typeof DemonstrationsFluxPmeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demonstrations/nova-renovation': {
+      id: '/demonstrations/nova-renovation'
+      path: '/demonstrations/nova-renovation'
+      fullPath: '/demonstrations/nova-renovation'
+      preLoaderRoute: typeof DemonstrationsNovaRenovationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemonstrationsAtelierVertRoute: DemonstrationsAtelierVertRoute,
+  DemonstrationsFluxPmeRoute: DemonstrationsFluxPmeRoute,
+  DemonstrationsNovaRenovationRoute: DemonstrationsNovaRenovationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
