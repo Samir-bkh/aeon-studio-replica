@@ -9,7 +9,7 @@ export const siteConfig = {
   country: "France",
   zone: "Strasbourg et toute la France à distance",
 
-  email: "",
+  email: "aeonstudio.contact@gmail.com",
   phone: "",
   linkedin: "",
 
