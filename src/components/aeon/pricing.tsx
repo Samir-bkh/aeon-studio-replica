@@ -68,7 +68,7 @@ export function Pricing() {
                 >
                   {featured && (
                     <span className="mb-4 inline-flex w-fit items-center rounded-full bg-gradient-to-r from-[#5B8CFF] to-[#8B5CF6] px-3 py-1 text-[11px] font-medium text-white">
-                      Le plus choisi
+                      Offre recommandée
                     </span>
                   )}
 
